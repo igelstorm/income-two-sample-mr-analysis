@@ -1,0 +1,19 @@
+id,label,sd,scale
+income_kweon,Income,0.351,sd
+F5_DEPRESSIO,Depression,,logodds
+F5_ALLANXIOUS,Anxiety,,logodds
+ieu-a-1009,Subjective wellbeing,,sd
+DEATH,Death,,logodds
+ieu-a-835,BMI,,sd
+ASTHMA_CHILD_EXMORE,Childhood asthma,,logodds
+birthweight,Birthweight,,sd
+ieu-b-4815,BMI,,sd
+ieu-b-4833,Alcohol,,sd
+ieu-b-4835,Education,,sd
+ieu-b-4839,Depressive,,sd
+ieu-b-4851,Wellbeing,,sd
+ieu-b-4857,EverSmk,,logodds
+sibling_income,Income,0.3171569,sd
+SmokingInitiation,Smoking initiation,,logodds
+CigarettesPerDay,Cigarettes per day,,sd
+DrinksPerWeek,Drinks per week,,sd

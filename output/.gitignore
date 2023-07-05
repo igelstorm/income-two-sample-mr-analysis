@@ -1,0 +1,10 @@
+*.csv
+*.docx
+*.eps
+*.html
+*.png
+*.rds
+*.svg
+*.txt
+.snakemake_timestamp
+!results/*.csv
