@@ -89,6 +89,8 @@ output/data/SmokingInitiation.feather: scripts/data/_liu.R
 output/data/ieu-%.feather: scripts/data/_opengwas.R
 	Rscript $< --variable ieu-$*
 
+output/data/sibling_income.feather: scripts/data/sibling_income.R output/data/ieu-b-4815.feather
+	Rscript $<
 output/data/%.feather: scripts/data/%.R
 	Rscript $<
 
