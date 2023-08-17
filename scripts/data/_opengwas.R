@@ -28,7 +28,7 @@ url <- sprintf("https://gwas.mrcieu.ac.uk/files/%s/%s.vcf.gz", study_id, study_i
 download_path <- sprintf("input/data/%s.vcf.gz", study_id)
 data_path <- sprintf("output/data/%s.feather", study_id)
 
-if (!file.exists(download_path)) { download.file(url, download_path) }
+if (!file.exists(download_path)) { download.file(url, download_path, mode = "wb") }
 
 tictoc::tic()
 print(paste0(study_id, ": Reading VCF"))

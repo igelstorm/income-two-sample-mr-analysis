@@ -5,7 +5,7 @@ library(data.table)
 url <- "https://osf.io/download/z69v8/"
 output_path <- "output/data/income_kweon.feather"
 input_path <- "input/data/income_kweon.txt.gz"
-if (!file.exists(input_path)) { download.file(url, input_path) }
+if (!file.exists(input_path)) { download.file(url, input_path, mode = "wb") }
 
 data <- fread(
   input_path,
