@@ -10,11 +10,8 @@ opt_parser <- OptionParser(option_list = list(
 opt <- parse_args(opt_parser)
 study_id <- opt$variable
 
-print(sprintf("Downloading %s (if necessary)", study_id))
-url <- sprintf("https://conservancy.umn.edu/bitstream/handle/11299/201564/%s.WithoutUKB.txt.gz", study_id)
 input_path <- sprintf("input/data/%s.WithoutUKB.txt.gz", study_id)
 output_path <- sprintf("output/data/%s.feather", study_id)
-if (!file.exists(input_path)) { download.file(url, input_path, mode = "wb") }
 
 all_metadata <- list(
   CigarettesPerDay  = list(model = "continuous"),

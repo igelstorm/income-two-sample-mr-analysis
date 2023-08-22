@@ -67,32 +67,49 @@ output/data/mvmr_exposure_data_all.feather: scripts/analysis/prepare_mvmr_exposu
 	Rscript $<
 
 ################################################################################
-# Download and clean GWAS data
+# Clean/harmonise GWAS data
 ################################################################################
 
-output/data/ASTHMA_CHILD_EXMORE.feather: scripts/data/_finngen.R
+output/data/ASTHMA_CHILD_EXMORE.feather: scripts/data/_finngen.R input/data/finngen/finngen_R8_ASTHMA_CHILD_EXMORE.gz
 	Rscript $< --variable ASTHMA_CHILD_EXMORE
-output/data/DEATH.feather: scripts/data/_finngen.R
+output/data/DEATH.feather: scripts/data/_finngen.R input/data/finngen/finngen_R8_DEATH.gz
 	Rscript $< --variable DEATH
-output/data/F5_ALLANXIOUS.feather: scripts/data/_finngen.R
+output/data/F5_ALLANXIOUS.feather: scripts/data/_finngen.R input/data/finngen/finngen_R8_F5_ALLANXIOUS.gz
 	Rscript $< --variable F5_ALLANXIOUS
-output/data/F5_DEPRESSIO.feather: scripts/data/_finngen.R
+output/data/F5_DEPRESSIO.feather: scripts/data/_finngen.R input/data/finngen/finngen_R8_F5_DEPRESSIO.gz
 	Rscript $< --variable F5_DEPRESSIO
 
-output/data/CigarettesPerDay.feather: scripts/data/_liu.R
+output/data/CigarettesPerDay.feather: scripts/data/_liu.R input/data/CigarettesPerDay.WithoutUKB.txt.gz
 	Rscript $< --variable CigarettesPerDay
-output/data/DrinksPerWeek.feather: scripts/data/_liu.R
+output/data/DrinksPerWeek.feather: scripts/data/_liu.R input/data/DrinksPerWeek.WithoutUKB.txt.gz
 	Rscript $< --variable DrinksPerWeek
-output/data/SmokingInitiation.feather: scripts/data/_liu.R
+output/data/SmokingInitiation.feather: scripts/data/_liu.R input/data/SmokingInitiation.WithoutUKB.txt.gz
 	Rscript $< --variable SmokingInitiation
 
-output/data/ieu-%.feather: scripts/data/_opengwas.R
+output/data/ieu-%.feather: scripts/data/_opengwas.R input/data/%.vcf.gz
 	Rscript $< --variable ieu-$*
 
 output/data/sibling_income.feather: scripts/data/sibling_income.R output/data/ieu-b-4815.feather
 	Rscript $<
-output/data/%.feather: scripts/data/%.R
+output/data/income_kweon.feather: scripts/data/income_kweon.R input/data/income_kweon.txt.gz
 	Rscript $<
+output/data/birthweight.feather: scripts/data/birthweight.R input/data/BW3_EUR_summary_stats.txt.gz
+	Rscript $<
+
+################################################################################
+# Download GWAS data
+################################################################################
+
+input/data/%.WithoutUKB.txt.gz:
+	curl -o $@ https://conservancy.umn.edu/bitstream/handle/11299/201564/$*.WithoutUKB.txt.gz
+input/data/finngen/finngen_R8_%.gz:
+	curl -o $@ https://storage.googleapis.com/finngen-public-data-r8/summary_stats/finngen_R8_$*.gz
+input/data/%.vcf.gz:
+	curl -o $@ https://gwas.mrcieu.ac.uk/files/$*/$*.vcf.gz
+input/data/BW3_EUR_summary_stats.txt.gz:
+	curl -o $@ http://egg-consortium.org/BW3/BW3_EUR_summary_stats.txt.gz
+input/data/income_kweon.txt.gz:
+	curl -o $@ https://osf.io/download/z69v8/
 
 ################################################################################
 # Download tool and data needed for offline clumping
@@ -102,8 +119,8 @@ output/data/%.feather: scripts/data/%.R
 input/ld_ref_panel/EUR.bed input/ld_ref_panel/EUR.fam input/ld_ref_panel/EUR.bim &: input/ld_ref_panel.tgz
 	tar -xzf $^ -C input/ld_ref_panel EUR.bed EUR.fam EUR.bim
 input/ld_ref_panel.tgz:
-	wget -O $@ http://fileserve.mrcieu.ac.uk/ld/1kg.v3.tgz
+	curl -o $@ http://fileserve.mrcieu.ac.uk/ld/1kg.v3.tgz
 
 # Download plink binary
 bin/plink.exe:
-	wget -O $@ https://github.com/MRCIEU/genetics.binaRies/raw/master/binaries/Windows/plink.exe
+	curl -o $@ https://github.com/MRCIEU/genetics.binaRies/raw/master/binaries/Windows/plink.exe

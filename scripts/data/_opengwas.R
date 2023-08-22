@@ -24,16 +24,13 @@ info <- list(
 study_id <- opt$variable
 study_info <- info[[study_id]]
 
-url <- sprintf("https://gwas.mrcieu.ac.uk/files/%s/%s.vcf.gz", study_id, study_id)
-download_path <- sprintf("input/data/%s.vcf.gz", study_id)
-data_path <- sprintf("output/data/%s.feather", study_id)
-
-if (!file.exists(download_path)) { download.file(url, download_path, mode = "wb") }
+input_path <- sprintf("input/data/%s.vcf.gz", study_id)
+output_path <- sprintf("output/data/%s.feather", study_id)
 
 tictoc::tic()
 print(paste0(study_id, ": Reading VCF"))
 
-data <- fread(download_path, skip = "#CHROM")
+data <- fread(input_path, skip = "#CHROM")
 data[, rownum := .I]
 
 print(paste0(study_id, ": Parsing VCF custom data"))
@@ -80,7 +77,7 @@ if (study_info$model == "logit") {
   data[, prevalence := study_info$prevalence]
 }
 setkey(data, rsid)
-arrow::write_feather(data, data_path)
+arrow::write_feather(data, output_path)
 
 rm(data)
 rm(custom_data)

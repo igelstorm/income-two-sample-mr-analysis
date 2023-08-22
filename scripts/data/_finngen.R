@@ -7,10 +7,8 @@ opt_parser <- OptionParser(option_list = list(
 opt <- parse_args(opt_parser)
 study_id <- opt$variable
 
-url <- sprintf("https://storage.googleapis.com/finngen-public-data-r8/summary_stats/finngen_R8_%s.gz", study_id)
 output_path <- here::here(sprintf("output/data/%s.feather", study_id))
 input_path <- here::here(sprintf("input/data/finngen/finngen_R8_%s.gz", study_id))
-if (!file.exists(input_path)) { download.file(url, input_path, mode = "wb") }
 
 # For prevalences: https://r8.risteys.finngen.fi/
 all_metadata <- list(
