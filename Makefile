@@ -117,7 +117,7 @@ input/data/income_kweon.txt.gz:
 
 # Download and extract linkage disequilibrium reference panel
 input/ld_ref_panel/EUR.bed input/ld_ref_panel/EUR.fam input/ld_ref_panel/EUR.bim &: input/ld_ref_panel.tgz
-	tar -xzf $^ -C input/ld_ref_panel EUR.bed EUR.fam EUR.bim
+	tar -xzmf $^ -C input/ld_ref_panel EUR.bed EUR.fam EUR.bim
 input/ld_ref_panel.tgz:
 	curl -o $@ http://fileserve.mrcieu.ac.uk/ld/1kg.v3.tgz
 
