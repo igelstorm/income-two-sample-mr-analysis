@@ -54,7 +54,7 @@ output/analysis/mvmr/%/mr_mvivw.rds: scripts/analysis/mvmr.R output/data/mvmr_ex
 ################################################################################
 # Prepare clumped datasets
 ################################################################################
-clumping_dependencies = input/ld_ref_panel/EUR.bed input/ld_ref_panel/EUR.fam input/ld_ref_panel/EUR.bim bin/plink.exe
+clumping_dependencies = input/ld_ref_panel/EUR.bed input/ld_ref_panel/EUR.fam input/ld_ref_panel/EUR.bim
 
 output/analysis/clumped_data/income_kweon__%.rds: scripts/analysis/clumping.R output/data/income_kweon.feather output/data/%.feather $(clumping_dependencies)
 	Rscript $< --exposure income_kweon --outcome $*
@@ -112,7 +112,7 @@ input/data/income_kweon.txt.gz:
 	curl -o $@ https://osf.io/download/z69v8/
 
 ################################################################################
-# Download tool and data needed for offline clumping
+# Download data needed for offline clumping
 ################################################################################
 
 # Download and extract linkage disequilibrium reference panel
@@ -120,7 +120,3 @@ input/ld_ref_panel/EUR.bed input/ld_ref_panel/EUR.fam input/ld_ref_panel/EUR.bim
 	tar -xzmf $^ -C input/ld_ref_panel EUR.bed EUR.fam EUR.bim
 input/ld_ref_panel.tgz:
 	curl -o $@ http://fileserve.mrcieu.ac.uk/ld/1kg.v3.tgz
-
-# Download plink binary
-bin/plink.exe:
-	curl -o $@ https://github.com/MRCIEU/genetics.binaRies/raw/master/binaries/Windows/plink.exe

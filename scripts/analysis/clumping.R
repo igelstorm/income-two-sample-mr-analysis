@@ -54,7 +54,7 @@ clumped <- ld_clump(
   clump_r2 = 0.001,
   clump_p = 0.99,
   bfile = "input/ld_ref_panel/EUR",
-  plink_bin = here::here("bin/plink.exe")
+  plink_bin = genetics.binaRies::get_plink_binary()
 )
 
 clumped_exposure <- exposure_data[clumped$rsid]

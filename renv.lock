@@ -873,6 +873,21 @@
       ],
       "Hash": "15e9634c0fcd294799e9b2e929ed1b86"
     },
+    "genetics.binaRies": {
+      "Package": "genetics.binaRies",
+      "Version": "0.1.0",
+      "Source": "GitHub",
+      "RemoteType": "github",
+      "RemoteHost": "api.github.com",
+      "RemoteUsername": "MRCIEU",
+      "RemoteRepo": "genetics.binaRies",
+      "RemoteRef": "master",
+      "RemoteSha": "a63ef35707d0848f32bc4748346663bf512d5c97",
+      "Requirements": [
+        "utils"
+      ],
+      "Hash": "a47385cdfca72be9d08c0596c15b8f4f"
+    },
     "getopt": {
       "Package": "getopt",
       "Version": "1.20.3",

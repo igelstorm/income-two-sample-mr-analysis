@@ -39,7 +39,7 @@ clumped <- ieugwasr::ld_clump(
   clump_kb = 10000,
   clump_r2 = 0.001,
   bfile = here::here("input/ld_ref_panel/EUR"),
-  plink_bin = here::here("bin/plink.exe")
+  plink_bin = genetics.binaRies::get_plink_binary()
 )
 
 arrow::write_feather(significant, here::here("output/data/mvmr_exposure_data_all.feather"))

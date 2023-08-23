@@ -48,7 +48,7 @@ clumped <- ieugwasr::ld_clump(
   clump_r2 = 0.01,
   clump_p = 1e-3,
   bfile = "input/ld_ref_panel/EUR",
-  plink_bin = here::here("bin/plink.exe")
+  plink_bin = genetics.binaRies::get_plink_binary()
 )
 
 top_vars <- clumped$rsid
