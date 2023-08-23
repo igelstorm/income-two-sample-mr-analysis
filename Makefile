@@ -86,7 +86,7 @@ output/data/DrinksPerWeek.feather: scripts/data/_liu.R input/data/DrinksPerWeek.
 output/data/SmokingInitiation.feather: scripts/data/_liu.R input/data/SmokingInitiation.WithoutUKB.txt.gz
 	Rscript $< --variable SmokingInitiation
 
-output/data/ieu-%.feather: scripts/data/_opengwas.R input/data/%.vcf.gz
+output/data/ieu-%.feather: scripts/data/_opengwas.R input/data/ieu-%.vcf.gz
 	Rscript $< --variable ieu-$*
 
 output/data/sibling_income.feather: scripts/data/sibling_income.R output/data/ieu-b-4815.feather
@@ -104,8 +104,8 @@ input/data/%.WithoutUKB.txt.gz:
 	curl -o $@ https://conservancy.umn.edu/bitstream/handle/11299/201564/$*.WithoutUKB.txt.gz
 input/data/finngen/finngen_R8_%.gz:
 	curl -o $@ https://storage.googleapis.com/finngen-public-data-r8/summary_stats/finngen_R8_$*.gz
-input/data/%.vcf.gz:
-	curl -o $@ https://gwas.mrcieu.ac.uk/files/$*/$*.vcf.gz
+input/data/ieu-%.vcf.gz:
+	curl -o $@ https://gwas.mrcieu.ac.uk/files/ieu-$*/ieu-$*.vcf.gz
 input/data/BW3_EUR_summary_stats.txt.gz:
 	curl -o $@ http://egg-consortium.org/BW3/BW3_EUR_summary_stats.txt.gz
 input/data/income_kweon.txt.gz:
