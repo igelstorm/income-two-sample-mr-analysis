@@ -6,7 +6,8 @@ library(optparse)
 
 opt_parser <- OptionParser(option_list = list(
   make_option("--exposure", type = "character", help = "Exposure dataset ID"),
-  make_option("--outcome", type = "character", help = "Outcome dataset ID")
+  make_option("--outcome", type = "character", help = "Outcome dataset ID"),
+  make_option("--plink-path", type = "character", help = "Path of the plink1.9 executable")
 ))
 opt <- parse_args(opt_parser)
 
@@ -54,7 +55,7 @@ clumped <- ld_clump(
   clump_r2 = 0.001,
   clump_p = 0.99,
   bfile = "input/ld_ref_panel/EUR",
-  plink_bin = genetics.binaRies::get_plink_binary()
+  plink_bin = opt$`plink-path`
 )
 
 clumped_exposure <- exposure_data[clumped$rsid]

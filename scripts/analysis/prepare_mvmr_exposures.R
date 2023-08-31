@@ -1,5 +1,11 @@
 library(data.table)
 library(MendelianRandomization)
+library(optparse)
+
+opt_parser <- OptionParser(option_list = list(
+  make_option("--plink-path", type = "character", help = "Path of the plink1.9 executable")
+))
+opt <- parse_args(opt_parser)
 
 income_file <- "output/data/income_kweon.feather"
 education_file <- "output/data/ieu-a-1239.feather"
@@ -39,7 +45,7 @@ clumped <- ieugwasr::ld_clump(
   clump_kb = 10000,
   clump_r2 = 0.001,
   bfile = here::here("input/ld_ref_panel/EUR"),
-  plink_bin = genetics.binaRies::get_plink_binary()
+  plink_bin = opt$`plink-path`
 )
 
 arrow::write_feather(significant, here::here("output/data/mvmr_exposure_data_all.feather"))

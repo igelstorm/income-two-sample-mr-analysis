@@ -1,3 +1,5 @@
+plink_executable = "plink1.9"
+
 outcomes = F5_DEPRESSIO F5_ALLANXIOUS ieu-a-1009 DEATH ieu-a-835 ASTHMA_CHILD_EXMORE birthweight SmokingInitiation CigarettesPerDay DrinksPerWeek
 sibling_outcomes = ieu-b-4815 ieu-b-4833 ieu-b-4835 ieu-b-4839 ieu-b-4851 ieu-b-4857
 
@@ -45,11 +47,11 @@ output/analysis/mr/sibling_income__%/mr_ivw.rds: scripts/analysis/primary_mr_and
 
 # CAUSE analysis
 output/analysis/cause/income_kweon__%/model.rds: scripts/analysis/cause.R output/data/income_kweon.feather output/data/%.feather $(clumping_dependencies)
-	Rscript $< --exposure income_kweon --outcome $*
+	Rscript $< --exposure income_kweon --outcome $* --plink-path $(plink_executable)
 
 # MVMR analysis
 output/analysis/mvmr/%/mr_mvivw.rds: scripts/analysis/mvmr.R output/data/mvmr_exposure_data_all.feather output/data/%.feather
-	Rscript $< --outcome $*
+	Rscript $< --outcome $* --plink-path $(plink_executable)
 
 ################################################################################
 # Prepare clumped datasets
@@ -57,14 +59,14 @@ output/analysis/mvmr/%/mr_mvivw.rds: scripts/analysis/mvmr.R output/data/mvmr_ex
 clumping_dependencies = input/ld_ref_panel/EUR.bed input/ld_ref_panel/EUR.fam input/ld_ref_panel/EUR.bim
 
 output/analysis/clumped_data/income_kweon__%.rds: scripts/analysis/clumping.R output/data/income_kweon.feather output/data/%.feather $(clumping_dependencies)
-	Rscript $< --exposure income_kweon --outcome $*
+	Rscript $< --exposure income_kweon --outcome $* --plink-path $(plink_executable)
 output/analysis/clumped_data/%__income_kweon.rds: scripts/analysis/clumping.R output/data/income_kweon.feather output/data/%.feather $(clumping_dependencies)
-	Rscript $< --exposure $* --outcome income_kweon
+	Rscript $< --exposure $* --outcome income_kweon --plink-path $(plink_executable)
 output/analysis/clumped_data/sibling_income__%.rds: scripts/analysis/clumping.R output/data/sibling_income.feather output/data/income_kweon.feather output/data/%.feather $(clumping_dependencies)
-	Rscript $< --exposure sibling_income --outcome $*
+	Rscript $< --exposure sibling_income --outcome $* --plink-path $(plink_executable)
 
 output/data/mvmr_exposure_data_all.feather: scripts/analysis/prepare_mvmr_exposures.R output/data/income_kweon.feather output/data/ieu-a-1239.feather $(clumping_dependencies)
-	Rscript $<
+	Rscript $< --plink-path $(plink_executable)
 
 ################################################################################
 # Clean/harmonise GWAS data

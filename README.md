@@ -3,7 +3,14 @@
 ## Requirements
 
 - [R](https://www.r-project.org/)
-- [GNU Make](https://www.gnu.org/software/make/)
+- [GNU Make](https://www.gnu.org/software/make/) (for running the complete analysis pipeline)
+- [curl](https://www.curl.se/) (for downloading files)
+- [tar](https://www.gnu.org/software/tar/) (for extracting `tar` archives)
+- [PLINK 1.9](https://www.cog-genomics.org/plink/) (for clumping genetic summary data)
+
+The most convenient way to install these tools might be by using a package manager appropriate for your system, e.g. apt on Debian/Ubuntu, [Scoop](https://scoop.sh/) on Windows, or [Homebrew](https://brew.sh/) on OS X.
+
+If your PLINK executable is in a non-standard location, or is named something other than `plink1.9`, you may need to edit the `plink_executable` variable at the top of the Makefile accordingly.
 
 ## Setting up the R environment
 
@@ -17,11 +24,9 @@
 ## Downloading data
 
 - Most data sets are publicly available, and are automatically downloaded as part of the analyses.
-- There are a few exceptions:
-  - The education GWAS data must be downloaded manually from the [SSGAC Data Portal](https://thessgac.com/) (requires login). Download `GWAS_EA_excl23andMe.txt` and place it in the `input/data/` directory.
-  - The sibling-adjusted income GWAS data are not yet publicly available. In order to run these analyses, the following files need to be present in the `input/data/siblinggwas/` directory:
-    - `Income_WS_mtag_meta.txt`
-    - `income-study-summary.txt`
+- There is one exception: The sibling-adjusted income GWAS data are not yet publicly available. In order to run these analyses, the following files need to be present in the `input/data/siblinggwas/` directory:
+  - `Income_WS_mtag_meta.txt`
+  - `income-study-summary.txt`
 
 ## Running the analyses
 
