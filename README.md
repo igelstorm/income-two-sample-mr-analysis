@@ -10,7 +10,7 @@
 
 The most convenient way to install these tools might be by using a package manager appropriate for your system, e.g. apt on Debian/Ubuntu, [Scoop](https://scoop.sh/) on Windows, or [Homebrew](https://brew.sh/) on OS X.
 
-If your PLINK executable is in a non-standard location, or is named something other than `plink1.9`, you may need to edit the `plink_executable` variable at the top of the Makefile accordingly.
+If your PLINK executable is in a non-standard location, or is named something other than `plink1.9.exe`, you may need to edit the `plink_executable` variable at the top of the Makefile accordingly.
 
 ## Setting up the R environment
 

@@ -1,4 +1,4 @@
-plink_executable = "plink1.9"
+plink_executable = "plink1.9.exe"
 
 outcomes = F5_DEPRESSIO F5_ALLANXIOUS ieu-a-1009 DEATH ieu-a-835 ASTHMA_CHILD_EXMORE birthweight SmokingInitiation CigarettesPerDay DrinksPerWeek
 sibling_outcomes = ieu-b-4815 ieu-b-4833 ieu-b-4835 ieu-b-4839 ieu-b-4851 ieu-b-4857
