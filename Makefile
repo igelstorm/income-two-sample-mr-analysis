@@ -103,15 +103,15 @@ output/data/birthweight.feather: scripts/data/birthweight.R input/data/BW3_EUR_s
 ################################################################################
 
 input/data/%.WithoutUKB.txt.gz:
-	curl -o $@ https://conservancy.umn.edu/bitstream/handle/11299/201564/$*.WithoutUKB.txt.gz
+	curl -Lo $@ https://conservancy.umn.edu/bitstream/handle/11299/201564/$*.WithoutUKB.txt.gz
 input/data/finngen/finngen_R8_%.gz:
-	curl -o $@ https://storage.googleapis.com/finngen-public-data-r8/summary_stats/finngen_R8_$*.gz
+	curl -Lo $@ https://storage.googleapis.com/finngen-public-data-r8/summary_stats/finngen_R8_$*.gz
 input/data/ieu-%.vcf.gz:
-	curl -o $@ https://gwas.mrcieu.ac.uk/files/ieu-$*/ieu-$*.vcf.gz
+	curl -Lo $@ https://gwas.mrcieu.ac.uk/files/ieu-$*/ieu-$*.vcf.gz
 input/data/BW3_EUR_summary_stats.txt.gz:
-	curl -o $@ http://egg-consortium.org/BW3/BW3_EUR_summary_stats.txt.gz
+	curl -Lo $@ http://egg-consortium.org/BW3/BW3_EUR_summary_stats.txt.gz
 input/data/income_kweon.txt.gz:
-	curl -o $@ https://osf.io/download/z69v8/
+	curl -Lo $@ https://osf.io/download/z69v8/
 
 ################################################################################
 # Download data needed for offline clumping
@@ -121,4 +121,4 @@ input/data/income_kweon.txt.gz:
 input/ld_ref_panel/EUR.bed input/ld_ref_panel/EUR.fam input/ld_ref_panel/EUR.bim &: input/ld_ref_panel.tgz
 	tar -xzmf $^ -C input/ld_ref_panel EUR.bed EUR.fam EUR.bim
 input/ld_ref_panel.tgz:
-	curl -o $@ http://fileserve.mrcieu.ac.uk/ld/1kg.v3.tgz
+	curl -Lo $@ http://fileserve.mrcieu.ac.uk/ld/1kg.v3.tgz
